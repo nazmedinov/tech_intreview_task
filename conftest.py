@@ -1,6 +1,5 @@
 import pytest
 
-from api_collection.dogs.api_dogs import ApiDogs
 from api_collection.image_uploader.api_uploader import APIUploader
 
 
