@@ -11,7 +11,7 @@ class YaUploader:
     def create_folder(self, path, token):
         url_create = 'https://cloud-api.yandex.net/v1/disk/resources'
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': f'OAuth {token}'}
-        response = requests.put(f'{url_create}?path={path}', headers = headers)
+        response = requests.put(f'{url_create}?path={path}', headers=headers)
 
     def upload_photos_to_yd(self, token, path, url_file, name):
         url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
@@ -69,5 +69,3 @@ def test_proverka_upload_dog(breed):
         for item in response.json()['_embedded']['items']:
             assert item['type'] == 'file'
             assert item['name'].startswith(breed)
-
-
