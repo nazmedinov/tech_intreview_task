@@ -1,10 +1,9 @@
 import random
-
 import pytest
 import requests
 
 
-class YaUploader:
+class YaUpLoader:
     def __init__(self):
         pass
 
@@ -40,7 +39,7 @@ def get_urls(breed, sub_breeds):
 def u(breed):
     sub_breeds = get_sub_breeds(breed)
     urls = get_urls(breed, sub_breeds)
-    yandex_client = YaUploader()
+    yandex_client = YaUpLoader()
     yandex_client.create_folder('test_folder', "AgAAAAAJtest_tokenxkUEdew")
     for url in urls:
         part_name = url.split('/')
