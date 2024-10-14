@@ -1,3 +1,4 @@
+import random
 import pytest
 
 from api_collection.dogs.api_dogs import ApiDogs
@@ -16,5 +17,14 @@ class TestUploadImageByBreed:
         uploader_api.create_folder(breed_path)
         list_of_sub_breeds_images = dogs_api.get_list_of_sub_breeds_images(breed_path)
         for image in list_of_sub_breeds_images:
-            upload_photo = uploader_api.upload_photo_to_folder(breed_path, image, '123')
-            print(upload_photo.href)
+            uploader_api.upload_photo_to_folder(
+                path=breed_path,
+                url_file=image,
+                name=f'{breed_path}_{random.randint(1, 100)}'
+            )
+        created_folder, created_items = uploader_api.get_folder_info(breed_path)
+        assert created_folder.name == breed_path
+        assert created_items.total <= len(list_of_sub_breeds_images)
+        for item in created_items.items:
+            assert item['name'].startswith(breed_path)
+            assert item['type'] == 'file'
